@@ -3,6 +3,8 @@ pipeline {
     stages {
         stage('Clonde') {
             steps {
+                sh 'ls'
+                sh 'cat Jenkinsfile'
                 git credentialsId: '33e35b80-2db3-4f65-ba2f-621628b51904', url: 'https://github.com/SmilentRhino/jenkins_test.git'
                 echo 'Clone..'
             }
@@ -10,6 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'ls'
+                sh 'cat Jenkinsfile'
             }
         }
         stage('Test') {
@@ -19,6 +22,7 @@ pipeline {
             steps {
                 sh 'printenv'
                 sh '/usr/bin/python test_password.py'
+                sh 'ls'
             }
         }
         stage('Deploy') {
