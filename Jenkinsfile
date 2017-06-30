@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Clonde') {
             steps {
-                git credentialsId: '33e35b80-2db3-4f65-ba2f-621628b51904', url: 'https://github.com/SmilentRhino/op_mac.git'
+                git credentialsId: '33e35b80-2db3-4f65-ba2f-621628b51904', url: 'https://github.com/SmilentRhino/jenkins_test.git'
                 echo 'Clone..'
-            }        
+            }
         }
         stage('Build') {
             steps {
@@ -24,7 +24,16 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                dir('directoryToDelete') {
+                    deleteDir()
+                }
             }
+        }
+    }
+    post {
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
         }
     }
 }
